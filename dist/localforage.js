@@ -2799,3 +2799,17 @@ module.exports = localforage_js;
 
 },{"3":3}]},{},[4])(4)
 });
+
+localforage.getAllItems = function() {
+  return new Promise(function(resolve, reject) {
+    let result = {}
+    localforage.iterate(function(value, key, iterationNumber) {
+      result[key] = value
+    }).then(function() {
+      resolve(result)
+    }).catch(function(err) {
+      console.error(err)
+      reject(null)
+    })
+  })
+}
